@@ -87,12 +87,58 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    startNode = problem.getStartState()
+    checkedNodes = []
+    stack = util.Stack()
+
+    if problem.isGoalState(startNode):
+        return []
+
+    stack.push((startNode, []))
+    while not stack.isEmpty():
+        currentNode, commands = stack.pop()
+
+        #Check if node has been seen or not
+        if currentNode not in checkedNodes:
+            checkedNodes.append(currentNode)
+
+            #if node is at goal, return commands to reach goal
+            if problem.isGoalState(currentNode):
+                return commands
+
+            #add all successors onto stack to be checked
+            for nextNode, move, cost in problem.getSuccessors(currentNode):
+                newMove = commands + [move]         #unchecked nodes + successor node
+                stack.push((nextNode, newMove))     #add succesors to stack
+    
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    startNode = problem.getStartState()
+    checkedNodes = []
+    queue = util.Queue()
+    
+    if problem.isGoalState(startNode):
+        return []
+        
+    queue.push((startNode, []))
+    while not queue.isEmpty():
+        currentNode, commands = queue.pop()
+        
+        #Check if node has been seen or not
+        if currentNode not in checkedNodes:
+            checkedNodes.append(currentNode)
+            
+             #if node is at goal, return commands to reach goal
+            if problem.isGoalState(currentNode):
+                return commands
+                
+            #add all successors onto queue to be checked
+            for nextNode, move, cost in problem.getSuccessors(currentNode):
+                newMove = commands + [move]         #unchecked nodes + successor node
+                queue.push((nextNode, newMove))     #add succesors to queue
+        
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
