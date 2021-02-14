@@ -79,7 +79,7 @@ def depthFirstSearch(problem):
     Your search algorithm needs to return a list of actions that reaches the
     goal. Make sure to implement a graph search algorithm.
 
-    To get started, you might want to try some of these simple commands to
+    To get started, you might want to try some of these simple path to
     understand the search problem that is being passed in:
 
     print("Start:", problem.getStartState())
@@ -87,57 +87,44 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    startNode = problem.getStartState()
-    checkedNodes = []
-    stack = util.Stack()
-
-    if problem.isGoalState(startNode):
-        return []
-
-    stack.push((startNode, []))
-    while not stack.isEmpty():
-        currentNode, commands = stack.pop()
-
-        #Check if node has been seen or not
-        if currentNode not in checkedNodes:
-            checkedNodes.append(currentNode)
-
-            #if node is at goal, return commands to reach goal
-            if problem.isGoalState(currentNode):
-                return commands
-
-            #add all successors onto stack to be checked
-            for nextNode, move, cost in problem.getSuccessors(currentNode):
-                newMove = commands + [move]         #unchecked nodes + successor node
-                stack.push((nextNode, newMove))     #add succesors to stack
+    open = [[problem.getStartState(), []]]
+    open2 = [problem.getStartState()]
+    closed = []
+    
+    while len(open) != 0:
+        x, path = open.pop()
+        if problem.isGoalState(x):
+            return path
+        else:
+            closed.append(x)
+            for child in problem.getSuccessors(x):
+                if child not in open2 and child[0] not in closed:
+                    open2.append(child[0])
+                    open.append([child[0], path + [child[1]]])
+    util.raiseNotDefined()
+                
     
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    startNode = problem.getStartState()
-    checkedNodes = []
-    queue = util.Queue()
+    open = util.Queue()
+    open2 = [problem.getStartState()]
+    closed = []
     
-    if problem.isGoalState(startNode):
-        return []
-        
-    queue.push((startNode, []))
-    while not queue.isEmpty():
-        currentNode, commands = queue.pop()
-        
-        #Check if node has been seen or not
-        if currentNode not in checkedNodes:
-            checkedNodes.append(currentNode)
-            
-             #if node is at goal, return commands to reach goal
-            if problem.isGoalState(currentNode):
-                return commands
-                
-            #add all successors onto queue to be checked
-            for nextNode, move, cost in problem.getSuccessors(currentNode):
-                newMove = commands + [move]         #unchecked nodes + successor node
-                queue.push((nextNode, newMove))     #add succesors to queue
+    open.push([problem.getStartState(), []])
+    
+    while not open.isEmpty():
+        x, path = open.pop()
+        if problem.isGoalState(x):
+            return path
+        else:
+            closed.append(x)
+            for child in problem.getSuccessors(x):
+                if child[0] not in open2 and child[0] not in closed:
+                    open2.append(child[0])
+                    open.push([child[0], path + [child[1]]])
+    util.raiseNotDefined()
         
 
 def uniformCostSearch(problem):
