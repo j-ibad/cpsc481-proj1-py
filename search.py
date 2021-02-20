@@ -11,8 +11,15 @@
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
-
 """
+Spring 2021 CPSC 481-04
+Team 6
+    Winnie Pan
+    Jianxi Xu
+    Josh Ibad
+"""
+"""
+
 In search.py, you will implement generic search algorithms which are called by
 Pacman agents (in searchAgents.py).
 """
