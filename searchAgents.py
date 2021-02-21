@@ -288,13 +288,13 @@ class CornersProblem(search.SearchProblem):
         # Please add any code here which you would like to use
         # in initializing the problem
         "*** YOUR CODE HERE ***"
-        
+        '''
         self.costFn = lambda x, y: 1
             # initialized corner visited state
         self.cornerVisited = [False, False, False, False]
             # define a state as (position,corner visited list)
         self.startState = (self.startingPosition, self.cornerVisited)
-
+        '''
     def getStartState(self):
         """
         Returns the start state (in your state space, not the full Pacman state
@@ -302,8 +302,8 @@ class CornersProblem(search.SearchProblem):
         """
         "*** YOUR CODE HERE ***"
         util.raiseNotDefined()
-            #return the start state
-        return self.startState
+        '''    #return the start state
+        return self.startState'''
 
     def isGoalState(self, state):
         """
@@ -312,12 +312,12 @@ class CornersProblem(search.SearchProblem):
         "*** YOUR CODE HERE ***"
         util.raiseNotDefined()
             #Initial isGoal as False.
-        isGoal = False
+        '''isGoal = False
         cornerVisited = state[1]
         if cornerVisited == [True, True, True, True]:
             isGoal = True
             #If isGoal is found retrun.
-        return isGoal
+        return isGoal'''
 
     def getSuccessors(self, state):
         """

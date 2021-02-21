@@ -13,7 +13,6 @@
 
 """
 Spring 2021 CPSC 481-04
-Team 6
     Winnie Pan
     Jianxi Xu
     Josh Ibad
