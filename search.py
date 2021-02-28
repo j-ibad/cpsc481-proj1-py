@@ -19,6 +19,7 @@ Spring 2021 CPSC 481-04
 """
 """
 
+
 In search.py, you will implement generic search algorithms which are called by
 Pacman agents (in searchAgents.py).
 """
